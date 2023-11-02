@@ -36,7 +36,7 @@ export default function Player(props) {
 
     const handleClickNextRound = () => {
         props.onClickNextPlayer(0);
-        setTotalResult(roundResult + totalResult);
+        setTotalResult(result + roundResult + totalResult);
         setResult(0);
         setRoundResult(0);
         nextPlayer();
@@ -59,16 +59,15 @@ export default function Player(props) {
     return (
         <>
             <main className="player_container">
-                <h1>Player {props.whoPlayerIs}</h1>
-                <div>
+                <h1 className='player_name'>Player {props.whoPlayerIs}</h1>
+                <div className='player_stats'>
                     <h2>Now: {result}</h2>
                     <h2>Round: {roundResult}</h2>
                     <h2>Total: {totalResult}</h2>
                 </div>
-                <button disabled={props.currentPlayer != props.whoPlayerIs} onClick={handleClickThrowDice}>CLICK TO PLAY</button>
-                <button disabled={props.currentPlayer != props.whoPlayerIs} onClick={handleClickNextRound}>NEXT ROUND</button>
+                <button className='player_play' disabled={props.currentPlayer != props.whoPlayerIs} onClick={handleClickThrowDice}>CLICK TO PLAY</button>
+                <button className='player_next_round' disabled={props.currentPlayer != props.whoPlayerIs} onClick={handleClickNextRound}>NEXT ROUND</button>
             </main>
-
         </>
     )
 }

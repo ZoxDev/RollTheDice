@@ -27,7 +27,6 @@ export default function GameManager() {
                 <Player currentPlayer={currentPlayer} whoPlayerIs="1" onClickNextPlayer={setCurrentPlayer} onReachFifty={setPlayer1Score} />
                 <Player currentPlayer={currentPlayer} whoPlayerIs="2" onClickNextPlayer={setCurrentPlayer} onReachFifty={setPlayer2Score} />
             </main>
-
         </>
     )
 }
