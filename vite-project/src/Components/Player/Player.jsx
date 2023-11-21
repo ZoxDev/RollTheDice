@@ -1,7 +1,16 @@
 // Css
 import './Player.css'
 
+// React
 import { useState } from "react";
+import { PropTypes } from 'prop-types';
+
+Player.propTypes = {
+    whoPlayerIs: PropTypes.number,
+    currentPlayer: PropTypes.number,
+    onClickNextPlayer: PropTypes.func,
+    onReachFifty: PropTypes.func
+};
 
 export default function Player(props) {
     const [result, setResult] = useState(0);
@@ -33,8 +42,8 @@ export default function Player(props) {
 
     // HandleCliks
     const handleClickThrowDice = () => {
-            setDiceThrowing(true);
-            Dice();
+        setDiceThrowing(true);
+        Dice();
     };
 
     const handleClickNextRound = () => {
@@ -58,17 +67,21 @@ export default function Player(props) {
         props.onReachFifty(totalResult);
     }
 
+    //Formater en composant avec prop de fonction et tout
+    // Styliser et finis
     return (
         <>
             <main className="player_container">
                 <h1 className='player_name'>Player {props.whoPlayerIs}</h1>
                 <div className='player_stats'>
-                    <h2>Now: {result}</h2>
-                    <h2>Round: {roundResult}</h2>
-                    <h2>Total: {totalResult}</h2>
+                    <h2 className='player_stat'>Now: {result}</h2>
+                    <h2 className='player_stat'>Round: {roundResult}</h2>
+                    <h2 className='player_stat'>Total: {totalResult}</h2>
+                </div> 
+                <div className='buttons'>
+                    <button className='player_play' disabled={props.currentPlayer != props.whoPlayerIs || diceThrowing == true} onClick={handleClickThrowDice}>CLICK TO PLAY</button>
+                    <button className='player_play' disabled={props.currentPlayer != props.whoPlayerIs || diceThrowing == true} onClick={handleClickNextRound}>NEXT ROUND</button>
                 </div>
-                <button className='player_play' disabled={props.currentPlayer != props.whoPlayerIs || diceThrowing == true} onClick={handleClickThrowDice}>CLICK TO PLAY</button>
-                <button className='player_next_round' disabled={props.currentPlayer != props.whoPlayerIs || diceThrowing == true} onClick={handleClickNextRound}>NEXT ROUND</button>
             </main>
         </>
     )
